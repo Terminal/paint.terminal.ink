@@ -1,9 +1,20 @@
-
 // Height of each character block
 const width = 10;
 const height = 16;
 
 let painting = false;
+
+function setColour(r, g, b) {
+	const colour = document.getElementById('colour');
+	const rgb = [...arguments].map(colour => colour.toString(16)).map((colour) => {
+		for (i = 0; i < (2 - colour.length); i += 1) {
+			colour += '0'
+		}
+		return colour;
+	}).join('');
+
+	colour.value = `#${rgb}`;
+};
 
 window.addEventListener('load', () => {
 	const paint = document.getElementById('paint');
