@@ -1,3 +1,8 @@
+if (typeof window === 'undefined') {
+	console.error('What are you doing? This isn\'t a Node.js file');
+	process.exit(1);
+}
+
 // Height of each character block
 const width = 10;
 const height = 16;
