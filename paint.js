@@ -32,8 +32,6 @@ window.addEventListener('load', () => {
 	const canvas = paint.getContext('2d');
 	const area = paint.getBoundingClientRect();
 
-	console.log(paint);
-
 	const down = (x, y) => {
 		let outString = '';
 		if (rubber.checked) {
@@ -73,7 +71,6 @@ window.addEventListener('load', () => {
 	paint.addEventListener('mousedown', (e) => {
 		const x = Math.floor((e.pageX - area.left) / width) * width;
 		const y = Math.floor((e.pageY - area.top) / height) * height;
-		console.log(`x: ${x}\ny: ${y}`);
 		canvas.fillStyle = colour.value;
 		down(x, y);
 		
