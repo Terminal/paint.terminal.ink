@@ -11,6 +11,7 @@ window.addEventListener('load', () => {
 	const rubber = document.getElementById('rubber');
 	const output = document.getElementById('output');
 	const canvas = paint.getContext('2d');
+	const area = paint.getBoundingClientRect();
 
 	console.log(paint);
 
@@ -47,12 +48,12 @@ window.addEventListener('load', () => {
 			}
 			outString += '\n';
 		}
-		output.innerHTML = outString;
+		output.value = outString;
 	}
 
 	paint.addEventListener('mousedown', (e) => {
-		const x = Math.floor((e.x - paint.offsetLeft) / width) * width;
-		const y = Math.floor((e.y - paint.offsetTop) / height) * height;
+		const x = Math.floor((e.pageX - area.left) / width) * width;
+		const y = Math.floor((e.pageY - area.top) / height) * height;
 		console.log(`x: ${x}\ny: ${y}`);
 		canvas.fillStyle = colour.value;
 		down(x, y);
@@ -61,8 +62,8 @@ window.addEventListener('load', () => {
 	});
 
 	paint.addEventListener('mousemove', (e) => {
-		const x = Math.floor((e.x - paint.offsetLeft) / width) * width;
-		const y = Math.floor((e.y - paint.offsetTop) / height) * height;
+		const x = Math.floor((e.pageX - area.left) / width) * width;
+		const y = Math.floor((e.pageY - area.top) / height) * height;
 		if (painting) {
 			down(x, y);
 		}

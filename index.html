@@ -6,15 +6,28 @@
 				border-style: solid;
 				background-color: #000000;
 			}
+
+			textarea {
+				width: 300;
+				height: 200;
+			}
 		</style>
 	</head>
 	<body>
+		<h1>paint.terminal.ink</h1>
+		<ul>
+			<li><a href="https://github.com/Terminal/paint.terminal.ink">GitHub</a></li>
+		</ul>
 		<canvas id="paint" width="800" height="700"></canvas>
 		<div>
-			<input type="color" id="colour" value="#FFFFFF">
-			<input type="checkbox" id="rubber" name="rubber">
-			<label for="rubber">Rubber</label>
+			<label for="colour">Colour: </label>
+			<input type="color" id="colour" name="colour" value="#FFFFFF">
 		</div>
-		<pre><code id="output"></code></pre>
+		<div>
+			<label for="rubber">Rubber: </label>
+			<input type="checkbox" id="rubber" name="rubber">
+		</div>
+		<textarea id="output" onclick="this.select()">
+		</textarea>
 	</body>
 </html>
