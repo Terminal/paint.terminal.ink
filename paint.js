@@ -56,7 +56,7 @@ window.addEventListener('load', () => {
 				let outColour;
 				if (data[3]) {
 					currentColour = `rgb(${data[0]}, ${data[1]}, ${data[2]})`;
-					outColour = `\\x1b[38;2;${data[0]};${data[1]};${data[2]}m`;
+					outColour = `\\x1b[48;2;${data[0]};${data[1]};${data[2]}m`;
 				} else {
 					currentColour = 'transparent';
 					outColour = '\\x1b[0m';
