@@ -4,6 +4,14 @@ const height = 16;
 
 let painting = false;
 
+function save() {
+    const download = document.getElementById('download');
+    const canvas = document.getElementById('paint');
+
+    const data = canvas.toDataURL('image/png').replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+    download.setAttribute('href', data);
+}
+
 function setColour(r, g, b) {
 	const colour = document.getElementById('colour');
 	const rgb = [...arguments].map(colour => colour.toString(16)).map((colour) => {
