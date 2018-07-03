@@ -12,6 +12,15 @@
 				height: 200;
 			}
 
+			canvas {
+				width: 800;
+				height: 800;
+				image-rendering: -moz-crisp-edges;
+  			image-rendering: -webkit-crisp-edges;
+				image-rendering: pixelated;
+				image-rendering: crisp-edges;
+			}
+
 			body, button {
 				font-family: 'Ubuntu Mono', 'Courier New', Courier, monospace;
 			}
@@ -22,7 +31,7 @@
 		<ul>
 			<li><a href="https://github.com/Terminal/paint.terminal.ink">GitHub</a></li>
 		</ul>
-		<canvas id="paint" width="800" height="700"></canvas>
+		<canvas id="paint" width="100" height="80"></canvas>
 		<div>
 			<label for="colour">Colour: </label>
 			<input type="color" id="colour" name="colour" value="#FFFFFF">
@@ -49,8 +58,9 @@
 		</div>
 		<div>
 			<label for="rubber">Rubber: </label>
-            		<input type="checkbox" id="rubber" name="rubber">
-            		<a id="download" download="image.png"><button onclick="save()">Save!</button></a>
+			<input type="checkbox" id="rubber" name="rubber">
+			<a id="download" download="image.png"><button onclick="save()">Save!</button></a>
+			<a id="generate" download="image.png"><button onclick="generate()">Generate Code</button></a>
 		</div>
 		<textarea id="output" onclick="this.select()">
 		</textarea>

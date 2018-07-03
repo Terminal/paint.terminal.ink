@@ -50,8 +50,12 @@ if (typeof window === 'undefined') {
 }
 
 // Height of each character block
-const width = 10;
-const height = 16;
+const width = 1;
+const height = 1;
+
+// The scale factor from the size of the canvas to the appeared size of the canvas
+const scaleX = 8;
+const scaleY = 10;
 
 let previous = null;
 
@@ -84,16 +88,7 @@ const output = document.getElementById('output');
 const canvas = paint.getContext('2d');
 const area = paint.getBoundingClientRect();
 
-const down = (point) => {
-	const realX = point.x * width;
-	const realY = point.y * height;
-
-	if (rubber.checked) {
-		canvas.clearRect(realX, realY, width, height);
-	} else {
-		canvas.fillRect(realX, realY, width, height);
-	}
-
+const generate = () => {
 	let i = 0;
 	let j = 0;
 	let beforeColour = 'transparent';
@@ -121,6 +116,17 @@ const down = (point) => {
 		outString += '\n';
 	}
 	output.value = outString;
+}
+
+const down = (point) => {
+	const realX = point.x * width;
+	const realY = point.y * height;
+
+	if (rubber.checked) {
+		canvas.clearRect(realX, realY, width, height);
+	} else {
+		canvas.fillRect(realX, realY, width, height);
+	}
 };
 
 // https://stackoverflow.com/questions/4672279/bresenham-algorithm-in-javascript
@@ -160,8 +166,8 @@ const line = (previous, current) => {
 };
 
 paint.addEventListener('mousedown', (e) => {
-	const x = Math.floor((e.pageX - paint.offsetLeft) / width);
-	const y = Math.floor((e.pageY - paint.offsetTop) / height);
+	const x = Math.floor((e.pageX - paint.offsetLeft) / scaleX);
+	const y = Math.floor((e.pageY - paint.offsetTop) / scaleY);
 	canvas.fillStyle = colour.value;
 	down({
 		x, y
@@ -171,8 +177,9 @@ paint.addEventListener('mousedown', (e) => {
 });
 
 paint.addEventListener('mousemove', (e) => {
-	const x = Math.floor((e.pageX - paint.offsetLeft) / width);
-	const y = Math.floor((e.pageY - paint.offsetTop) / height);
+	const x = Math.floor((e.pageX - paint.offsetLeft) / scaleX);
+	const y = Math.floor((e.pageY - paint.offsetTop) / scaleY);
+	console.log(x, y);
 	if (painting) {
 		down({
 			x, y
