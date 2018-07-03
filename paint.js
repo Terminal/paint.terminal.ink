@@ -55,7 +55,7 @@ const height = 1;
 
 // The scale factor from the size of the canvas to the appeared size of the canvas
 const scaleX = 8;
-const scaleY = 10;
+const scaleY = 16;
 
 let previous = null;
 
