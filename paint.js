@@ -62,11 +62,11 @@ let previous = null;
 let painting = false;
 
 function save() {
-    const download = document.getElementById('download');
-    const canvas = document.getElementById('paint');
+	const download = document.getElementById('download');
+	const canvas = document.getElementById('paint');
 
-    const data = canvas.toDataURL('image/png').replace(/^data:image\/[^;]/, 'data:application/octet-stream');
-    download.setAttribute('href', data);
+	const data = canvas.toDataURL('image/png').replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+	download.setAttribute('href', data);
 }
 
 function setColour(r, g, b) {
@@ -86,7 +86,6 @@ const colour = document.getElementById('colour');
 const rubber = document.getElementById('rubber');
 const output = document.getElementById('output');
 const canvas = paint.getContext('2d');
-const area = paint.getBoundingClientRect();
 
 const generate = () => {
 	let i = 0;
@@ -165,9 +164,11 @@ const line = (previous, current) => {
 	})
 };
 
+// This helped, I guess: https://stackoverflow.com/questions/43853119/javascript-wrong-mouse-position-when-drawing-on-canvas
 paint.addEventListener('mousedown', (e) => {
-	const x = Math.floor((e.pageX - paint.offsetLeft) / scaleX);
-	const y = Math.floor((e.pageY - paint.offsetTop) / scaleY);
+	const area = paint.getBoundingClientRect();
+	const x = Math.floor((e.pageX - area.left - scrollX) / scaleX);
+	const y = Math.floor((e.pageY - area.top - scrollY) / scaleY);
 	canvas.fillStyle = colour.value;
 	down({
 		x, y
@@ -177,9 +178,10 @@ paint.addEventListener('mousedown', (e) => {
 });
 
 paint.addEventListener('mousemove', (e) => {
-	const x = Math.floor((e.pageX - paint.offsetLeft) / scaleX);
-	const y = Math.floor((e.pageY - paint.offsetTop) / scaleY);
-	console.log(x, y);
+	const area = paint.getBoundingClientRect();
+	const x = Math.floor((e.pageX - area.left - scrollX) / scaleX);
+	const y = Math.floor((e.pageY - area.top - scrollY) / scaleY);
+	console.log(x, y)
 	if (painting) {
 		down({
 			x, y

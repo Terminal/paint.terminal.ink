@@ -2,68 +2,71 @@
 	<head>
 		<title>paint.terminal.ink - ANSI Terminal compatible paint program</title>
 		<style>
-			canvas {
+			#paint {
 				border-style: solid;
-				background-color: #000000;
-			}
-
-			textarea {
-				width: 300;
-				height: 200;
-			}
-
-			canvas {
+				background-image: url('transparency.png');
+				align-self: center;
 				width: 800;
 				height: 800;
+				margin-top: 2em;
 				image-rendering: -moz-crisp-edges;
   			image-rendering: -webkit-crisp-edges;
 				image-rendering: pixelated;
 				image-rendering: crisp-edges;
 			}
 
-			body, button {
-				font-family: 'Ubuntu Mono', 'Courier New', Courier, monospace;
+			#output {
+				height: 30vh;
 			}
 		</style>
 	</head>
 	<body>
-		<h1>paint.terminal.ink</h1>
-		<ul>
-			<li><a href="https://github.com/Terminal/paint.terminal.ink">GitHub</a></li>
-		</ul>
-		<canvas id="paint" width="100" height="50"></canvas>
-		<div>
-			<label for="colour">Colour: </label>
-			<input type="color" id="colour" name="colour" value="#FFFFFF">
-			<div>
-				<button style="background-color:rgb(0, 0, 0)" onclick="setColour(0, 0, 0)">colour</button>
-				<button style="background-color:rgb(128, 0, 0)" onclick="setColour(128, 0, 0)">colour</button>
-				<button style="background-color:rgb(0, 128, 0)" onclick="setColour(0, 128, 0)">colour</button>
-				<button style="background-color:rgb(128, 128, 0)" onclick="setColour(128, 128, 0)">colour</button>
-				<button style="background-color:rgb(0, 0, 128)" onclick="setColour(0, 0, 128)">colour</button>
-				<button style="background-color:rgb(128, 0, 128)" onclick="setColour(128, 0, 128)">colour</button>
-				<button style="background-color:rgb(0, 128, 128)" onclick="setColour(0, 128, 128)">colour</button>
-				<button style="background-color:rgb(192, 192, 192)" onclick="setColour(192, 192, 192)">colour</button>
+		<div class="nav-container">
+			<h4 class="nav-title title">paint.terminal.ink</h4>
+		</div>
+		<div class="container">
+			<div class="row center-text">
+				<canvas id="paint" width="100" height="50"></canvas>
 			</div>
-			<div>
-				<button style="background-color:rgb(128, 128, 128)" onclick="setColour(128, 128, 128)">colour</button>
-				<button style="background-color:rgb(255, 0, 0)" onclick="setColour(255, 0, 0)">colour</button>
-				<button style="background-color:rgb(0, 255, 0)" onclick="setColour(0, 255, 0)">colour</button>
-				<button style="background-color:rgb(255, 255, 0)" onclick="setColour(255, 255, 0)">colour</button>
-				<button style="background-color:rgb(0, 0, 255)" onclick="setColour(0, 0, 255)">colour</button>
-				<button style="background-color:rgb(255, 0, 255)" onclick="setColour(255, 0, 255)">colour</button>
-				<button style="background-color:rgb(0, 255, 255)" onclick="setColour(0, 255, 255)">colour</button>
-				<button style="background-color:rgb(255, 255, 255)" onclick="setColour(255, 255, 255)">colour</button>
+			<div class="row center-text">
+				<label for="colour">Colour: </label>
+				<input type="color" id="colour" name="colour" value="#FFFFFF">
+				<div>
+					<button class="btn" style="background-color:rgb(0, 0, 0)" onclick="setColour(0, 0, 0)">colour</button>
+					<button class="btn" style="background-color:rgb(128, 0, 0)" onclick="setColour(128, 0, 0)">colour</button>
+					<button class="btn" style="background-color:rgb(0, 128, 0)" onclick="setColour(0, 128, 0)">colour</button>
+					<button class="btn" style="background-color:rgb(128, 128, 0)" onclick="setColour(128, 128, 0)">colour</button>
+					<button class="btn" style="background-color:rgb(0, 0, 128)" onclick="setColour(0, 0, 128)">colour</button>
+					<button class="btn" style="background-color:rgb(128, 0, 128)" onclick="setColour(128, 0, 128)">colour</button>
+					<button class="btn" style="background-color:rgb(0, 128, 128)" onclick="setColour(0, 128, 128)">colour</button>
+					<button class="btn black-text" style="background-color:rgb(192, 192, 192)" onclick="setColour(192, 192, 192)">colour</button>
+				</div>
+				<div>
+					<button class="btn" style="background-color:rgb(128, 128, 128)" onclick="setColour(128, 128, 128)">colour</button>
+					<button class="btn" style="background-color:rgb(255, 0, 0)" onclick="setColour(255, 0, 0)">colour</button>
+					<button class="btn black-text" style="background-color:rgb(0, 255, 0)" onclick="setColour(0, 255, 0)">colour</button>
+					<button class="btn black-text" style="background-color:rgb(255, 255, 0)" onclick="setColour(255, 255, 0)">colour</button>
+					<button class="btn" style="background-color:rgb(0, 0, 255)" onclick="setColour(0, 0, 255)">colour</button>
+					<button class="btn black-text" style="background-color:rgb(255, 0, 255)" onclick="setColour(255, 0, 255)">colour</button>
+					<button class="btn black-text" style="background-color:rgb(0, 255, 255)" onclick="setColour(0, 255, 255)">colour</button>
+					<button class="btn black-text" style="background-color:rgb(255, 255, 255)" onclick="setColour(255, 255, 255)">colour</button>
+				</div>
+			</div>
+			<div class="row center-text">
+				<label for="rubber">Rubber: </label>
+				<input type="checkbox" id="rubber" name="rubber">
+			</div>
+			<div class="row center-text">
+				<a id="download" download="image.png">
+					<button class="btn white black-text" onclick="save()">Save!</button>
+				</a>
+				<button class="btn white black-text" onclick="generate()">Generate printable text</button>
+			</div>
+			<div class="row column">
+				<label for="output">Output</label>
+				<textarea class="full-width" id="output" onclick="this.select(); generate();"></textarea>
 			</div>
 		</div>
-		<div>
-			<label for="rubber">Rubber: </label>
-			<input type="checkbox" id="rubber" name="rubber">
-			<a id="download" download="image.png"><button onclick="save()">Save!</button></a>
-			<a id="generate" download="image.png"><button onclick="generate()">Generate Code</button></a>
-		</div>
-		<textarea id="output" onclick="this.select()">
-		</textarea>
 		<script src="paint.js"></script>
 	</body>
 </html>
