@@ -1,3 +1,8 @@
+# deprecated
+Use the [terminal paint](https://leondrolio.com/apps/terminal-paint/) program on my website.
+
+New source code: https://github.com/7coil/7coil/blob/master/src/posts/apps/terminal-paint/src/TerminalPaint.tsx
+
 # paint
 
 24-bit colour to ANSI encoded paint program
